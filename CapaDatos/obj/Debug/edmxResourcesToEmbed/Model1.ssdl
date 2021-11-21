@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrabajoFFinanzasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="IdFactura" />
+    </Key>
+    <Property Name="IdFactura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdHerramientaCartera" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HerramientaCartera">
+    <Key>
+      <PropertyRef Name="IdHerramientaCartera" />
+    </Key>
+    <Property Name="IdHerramientaCartera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="celular" Type="varchar" MaxLength="9" />
+    <Property Name="DNI" Type="varchar" MaxLength="8" />
+    <Property Name="ciudad" Type="varchar" MaxLength="50" />
+    <Property Name="Tipo" Type="varchar" MaxLength="50" />
+    <Property Name="fechaInicial" Type="date" />
+    <Property Name="fechaFinal" Type="date" />
+    <Property Name="ValorNominal" Type="float" />
+    <Property Name="retencion" Type="float" />
+    <Property Name="ValorExpresadoCGI" Type="float" />
+    <Property Name="ValorExpresadoCGF" Type="float" />
+    <Property Name="TipoMoneda" Type="varchar" MaxLength="8" />
+    <Property Name="PlazoTasa" Type="varchar" MaxLength="12" />
+    <Property Name="TasaEoN" Type="float" />
+    <Property Name="FechaDescuento" Type="date" />
+    <Property Name="TipoTasa" Type="varchar" MaxLength="20" />
+    <Property Name="TEporcentaje" Type="float" />
+    <Property Name="dporcentaje" Type="float" />
+    <Property Name="descuento" Type="float" />
+    <Property Name="valorNeto" Type="float" />
+    <Property Name="valorTotalaRecibir" Type="float" />
+    <Property Name="valorTotalaEntregar" Type="float" />
+    <Property Name="TCEA" Type="float" />
+    <Property Name="dias" Type="int" />
+    <Property Name="MonedaSoles" Type="float" />
+    <Property Name="MonedaDolares" Type="float" />
+  </EntityType>
+  <EntityType Name="Letra">
+    <Key>
+      <PropertyRef Name="IdLetra" />
+    </Key>
+    <Property Name="IdLetra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdHerramientaCartera" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecibosxHonorario">
+    <Key>
+      <PropertyRef Name="IdRecibosxHonorario" />
+    </Key>
+    <Property Name="IdRecibosxHonorario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdHerramientaCartera" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombres" Type="varchar" MaxLength="50" />
+    <Property Name="apellidos" Type="varchar" MaxLength="50" />
+    <Property Name="nombreusuario" Type="varchar" MaxLength="50" />
+    <Property Name="contraseña" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="celular" Type="varchar" MaxLength="9" />
+    <Property Name="direccion" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Factura_HerramientaCartera">
+    <End Role="HerramientaCartera" Type="Self.HerramientaCartera" Multiplicity="1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HerramientaCartera">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Factura_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Letra_HerramientaCartera">
+    <End Role="HerramientaCartera" Type="Self.HerramientaCartera" Multiplicity="1" />
+    <End Role="Letra" Type="Self.Letra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HerramientaCartera">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Principal>
+      <Dependent Role="Letra">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Letra_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Letra" Type="Self.Letra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Letra">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecibosxHonorario_HerramientaCartera">
+    <End Role="HerramientaCartera" Type="Self.HerramientaCartera" Multiplicity="1" />
+    <End Role="RecibosxHonorario" Type="Self.RecibosxHonorario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HerramientaCartera">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Principal>
+      <Dependent Role="RecibosxHonorario">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecibosxHonorario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="RecibosxHonorario" Type="Self.RecibosxHonorario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="RecibosxHonorario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="TrabajoFFinanzasModelStoreContainer">
+    <EntitySet Name="Factura" EntityType="Self.Factura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HerramientaCartera" EntityType="Self.HerramientaCartera" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Letra" EntityType="Self.Letra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecibosxHonorario" EntityType="Self.RecibosxHonorario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Factura_HerramientaCartera" Association="Self.FK_Factura_HerramientaCartera">
+      <End Role="HerramientaCartera" EntitySet="HerramientaCartera" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factura_Usuario" Association="Self.FK_Factura_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Letra_HerramientaCartera" Association="Self.FK_Letra_HerramientaCartera">
+      <End Role="HerramientaCartera" EntitySet="HerramientaCartera" />
+      <End Role="Letra" EntitySet="Letra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Letra_Usuario" Association="Self.FK_Letra_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Letra" EntitySet="Letra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecibosxHonorario_HerramientaCartera" Association="Self.FK_RecibosxHonorario_HerramientaCartera">
+      <End Role="HerramientaCartera" EntitySet="HerramientaCartera" />
+      <End Role="RecibosxHonorario" EntitySet="RecibosxHonorario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecibosxHonorario_Usuario" Association="Self.FK_RecibosxHonorario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="RecibosxHonorario" EntitySet="RecibosxHonorario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

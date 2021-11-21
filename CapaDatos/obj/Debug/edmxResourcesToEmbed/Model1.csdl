@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrabajoFFinanzasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="IdFactura" />
+    </Key>
+    <Property Name="IdFactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdHerramientaCartera" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HerramientaCartera" Relationship="Self.FK_Factura_HerramientaCartera" FromRole="Factura" ToRole="HerramientaCartera" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Factura_Usuario" FromRole="Factura" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="HerramientaCartera">
+    <Key>
+      <PropertyRef Name="IdHerramientaCartera" />
+    </Key>
+    <Property Name="IdHerramientaCartera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="celular" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fechaInicial" Type="DateTime" Precision="0" />
+    <Property Name="fechaFinal" Type="DateTime" Precision="0" />
+    <Property Name="ValorNominal" Type="Double" />
+    <Property Name="retencion" Type="Double" />
+    <Property Name="ValorExpresadoCGI" Type="Double" />
+    <Property Name="ValorExpresadoCGF" Type="Double" />
+    <Property Name="TipoMoneda" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="PlazoTasa" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="TasaEoN" Type="Double" />
+    <Property Name="FechaDescuento" Type="DateTime" Precision="0" />
+    <Property Name="TipoTasa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TEporcentaje" Type="Double" />
+    <Property Name="dporcentaje" Type="Double" />
+    <Property Name="descuento" Type="Double" />
+    <Property Name="valorNeto" Type="Double" />
+    <Property Name="valorTotalaRecibir" Type="Double" />
+    <Property Name="valorTotalaEntregar" Type="Double" />
+    <Property Name="TCEA" Type="Double" />
+    <Property Name="dias" Type="Int32" />
+    <Property Name="MonedaSoles" Type="Double" />
+    <Property Name="MonedaDolares" Type="Double" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_HerramientaCartera" FromRole="HerramientaCartera" ToRole="Factura" />
+    <NavigationProperty Name="Letra" Relationship="Self.FK_Letra_HerramientaCartera" FromRole="HerramientaCartera" ToRole="Letra" />
+    <NavigationProperty Name="RecibosxHonorario" Relationship="Self.FK_RecibosxHonorario_HerramientaCartera" FromRole="HerramientaCartera" ToRole="RecibosxHonorario" />
+  </EntityType>
+  <EntityType Name="Letra">
+    <Key>
+      <PropertyRef Name="IdLetra" />
+    </Key>
+    <Property Name="IdLetra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdHerramientaCartera" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HerramientaCartera" Relationship="Self.FK_Letra_HerramientaCartera" FromRole="Letra" ToRole="HerramientaCartera" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Letra_Usuario" FromRole="Letra" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="RecibosxHonorario">
+    <Key>
+      <PropertyRef Name="IdRecibosxHonorario" />
+    </Key>
+    <Property Name="IdRecibosxHonorario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdHerramientaCartera" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HerramientaCartera" Relationship="Self.FK_RecibosxHonorario_HerramientaCartera" FromRole="RecibosxHonorario" ToRole="HerramientaCartera" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_RecibosxHonorario_Usuario" FromRole="RecibosxHonorario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="nombreusuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="celular" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Usuario" FromRole="Usuario" ToRole="Factura" />
+    <NavigationProperty Name="Letra" Relationship="Self.FK_Letra_Usuario" FromRole="Usuario" ToRole="Letra" />
+    <NavigationProperty Name="RecibosxHonorario" Relationship="Self.FK_RecibosxHonorario_Usuario" FromRole="Usuario" ToRole="RecibosxHonorario" />
+  </EntityType>
+  <Association Name="FK_Factura_HerramientaCartera">
+    <End Role="HerramientaCartera" Type="Self.HerramientaCartera" Multiplicity="1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HerramientaCartera">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Factura_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Letra_HerramientaCartera">
+    <End Role="HerramientaCartera" Type="Self.HerramientaCartera" Multiplicity="1" />
+    <End Role="Letra" Type="Self.Letra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HerramientaCartera">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Principal>
+      <Dependent Role="Letra">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecibosxHonorario_HerramientaCartera">
+    <End Role="HerramientaCartera" Type="Self.HerramientaCartera" Multiplicity="1" />
+    <End Role="RecibosxHonorario" Type="Self.RecibosxHonorario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HerramientaCartera">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Principal>
+      <Dependent Role="RecibosxHonorario">
+        <PropertyRef Name="IdHerramientaCartera" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Letra_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Letra" Type="Self.Letra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Letra">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecibosxHonorario_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="RecibosxHonorario" Type="Self.RecibosxHonorario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="RecibosxHonorario">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TrabajoFFinanzasEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Factura" EntityType="Self.Factura" />
+    <EntitySet Name="HerramientaCartera" EntityType="Self.HerramientaCartera" />
+    <EntitySet Name="Letra" EntityType="Self.Letra" />
+    <EntitySet Name="RecibosxHonorario" EntityType="Self.RecibosxHonorario" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Factura_HerramientaCartera" Association="Self.FK_Factura_HerramientaCartera">
+      <End Role="HerramientaCartera" EntitySet="HerramientaCartera" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Factura_Usuario" Association="Self.FK_Factura_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Letra_HerramientaCartera" Association="Self.FK_Letra_HerramientaCartera">
+      <End Role="HerramientaCartera" EntitySet="HerramientaCartera" />
+      <End Role="Letra" EntitySet="Letra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecibosxHonorario_HerramientaCartera" Association="Self.FK_RecibosxHonorario_HerramientaCartera">
+      <End Role="HerramientaCartera" EntitySet="HerramientaCartera" />
+      <End Role="RecibosxHonorario" EntitySet="RecibosxHonorario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Letra_Usuario" Association="Self.FK_Letra_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Letra" EntitySet="Letra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecibosxHonorario_Usuario" Association="Self.FK_RecibosxHonorario_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="RecibosxHonorario" EntitySet="RecibosxHonorario" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TrabajoFFinanzasModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TrabajoFFinanzasModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

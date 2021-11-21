@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0d8b7305c61c49ad9496a765058a2740" Name="Diagram1">
+        <EntityTypeShape EntityType="TrabajoFFinanzasModel.Factura" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrabajoFFinanzasModel.HerramientaCartera" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrabajoFFinanzasModel.Letra" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrabajoFFinanzasModel.RecibosxHonorario" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrabajoFFinanzasModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrabajoFFinanzasModel.Usuario" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="TrabajoFFinanzasModel.FK_Factura_HerramientaCartera" ManuallyRouted="false" />
+        <AssociationConnector Association="TrabajoFFinanzasModel.FK_Factura_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="TrabajoFFinanzasModel.FK_Letra_HerramientaCartera" ManuallyRouted="false" />
+        <AssociationConnector Association="TrabajoFFinanzasModel.FK_RecibosxHonorario_HerramientaCartera" ManuallyRouted="false" />
+        <AssociationConnector Association="TrabajoFFinanzasModel.FK_Letra_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="TrabajoFFinanzasModel.FK_RecibosxHonorario_Usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
